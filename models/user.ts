@@ -2,11 +2,10 @@ import mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const testUsersSchema = new Schema({
-  barName: String,
-  userMail: String
+  userName: String
 })
 
 // Crear modelo
-const testUsers = mongoose.model('tests', testUsersSchema)
+const User = mongoose.model('tests', testUsersSchema)
 
-export default testUsers
+export default User

@@ -14,5 +14,5 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-const routerTest = require('./routers/test')
-app.use('/api/test', routerTest)
+const routerOnload = require('./routers/onload')
+app.use('/api/onload', routerOnload)
