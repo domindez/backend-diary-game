@@ -19,7 +19,8 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     'no-tabs': 'off',
     'object-shorthand': 'off',
-    '@typescript-eslint/restrict-template-expressions' : 'off'
+    '@typescript-eslint/restrict-template-expressions': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off'
   },
   ignorePatterns: [".eslintrc.js"]
 }

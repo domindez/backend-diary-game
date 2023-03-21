@@ -4,7 +4,7 @@ const y = 0
 const x = 1
 
 export const createPath = () => {
-  const initialPos = [11, 6]
+  const initialPos = [10, 6]
   const tablero: number[][][] = []
 
   // Crear tablero
@@ -17,7 +17,7 @@ export const createPath = () => {
     }
   }
 
-  const path: number[][] = [initialPos]
+  const path: number[][] = [initialPos, [11, 4], [11, 6]]
 
   const lastCell = path[path.length - 1]
 
@@ -50,8 +50,8 @@ export const createPath = () => {
       break
   }
 
-  // Añadir celda al path
-  path.push(nextCell)
+  // Añadir celda al path si hay alguna válida
+  if (direction) path.push(nextCell)
 
   return path
 }
@@ -83,12 +83,6 @@ const checkValid = (tablero: number[][][], path: number[][], lastCell: number[],
       break
   }
 
-  console.log('newCell :>> ', newCell)
-  console.log('lastCell :>> ', lastCell)
-  if (newCell[y] === lastCell[y] && newCell[x] === lastCell[x]) {
-    valid = false
-  }
-
   // Celdas adyacentes
   const cell1 = newCell[y] - 1 >= 0 ? tablero[newCell[y] - 1][newCell[x]] : null
   const cell2 = newCell[y] + 1 < tablero.length ? tablero[newCell[y] + 1][newCell[x]] : null
@@ -108,13 +102,14 @@ const checkValid = (tablero: number[][][], path: number[][], lastCell: number[],
     }
   })
 
-  // HACER QUE EL PRIMER FALSE RETORNE
-
   // Comprueba que las adyacentes no están en el path
   cellsToCheck.forEach(cellToCheck => {
     if (cellToCheck !== null) {
       path.forEach(cellInPath => {
-        if (cellToCheck[y] === cellInPath[y] && cellToCheck[x] === cellInPath[x]) valid = false
+        if (cellToCheck[y] === cellInPath[y] && cellToCheck[x] === cellInPath[x]) {
+          valid = false
+          return valid
+        }
       })
     }
   })
