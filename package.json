@@ -2,10 +2,9 @@
 	"name": "template-backend-ts-express-mongoose",
 	"version": "1.0.0",
 	"description": "",
-	"main": "NODE_ENV=production node dist/app.js || ts-node app.ts",
+	"main": "dist/app.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "NODE_ENV=production node dist/app.js || ts-node app.ts"
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
 	"author": "",
