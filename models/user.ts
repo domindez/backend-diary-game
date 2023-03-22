@@ -1,11 +1,13 @@
 import mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const testUsersSchema = new Schema({
-  userName: String
-})
+const usersSchema = new Schema({
+  userID: String,
+  nBottles: Number,
+  livesSaved: Number
+}, { timestamps: true })
 
 // Crear modelo
-const User = mongoose.model('tests', testUsersSchema)
+const User = mongoose.model('diarygameusers', usersSchema)
 
 export default User

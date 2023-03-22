@@ -3,8 +3,7 @@ const ancho = 7
 const y = 0
 const x = 1
 
-export const createPath = () => {
-  const initialPos = [10, 6]
+export const createPath = (initialPos: number[], pathLength: number) => {
   const tablero: number[][][] = []
 
   // Crear tablero
@@ -17,42 +16,48 @@ export const createPath = () => {
     }
   }
 
-  const path: number[][] = [initialPos, [11, 4], [11, 6]]
+  const path: number[][] = [initialPos]
 
-  const lastCell = path[path.length - 1]
+  while (path.length < pathLength) {
+    const lastCell = path[path.length - 1]
 
-  // Decidir en qué direccion va el siguiente paso
-  const availableDirections: string[] = []
-  if (lastCell[y] !== 0 && checkValid(tablero, path, lastCell, 'up')) availableDirections.push('up')
-  if (lastCell[y] !== alto - 1 && checkValid(tablero, path, lastCell, 'down')) availableDirections.push('down')
-  if (lastCell[x] !== 0 && checkValid(tablero, path, lastCell, 'left')) availableDirections.push('left')
-  if (lastCell[x] !== ancho - 1 && checkValid(tablero, path, lastCell, 'right')) availableDirections.push('right')
+    // Decidir en qué direccion va el siguiente paso
+    const availableDirections: string[] = []
+    if (lastCell[y] !== 0 && checkValid(tablero, path, lastCell, 'up')) availableDirections.push('up')
+    if (lastCell[y] !== alto - 1 && checkValid(tablero, path, lastCell, 'down')) availableDirections.push('down')
+    if (lastCell[x] !== 0 && checkValid(tablero, path, lastCell, 'left')) availableDirections.push('left')
+    if (lastCell[x] !== ancho - 1 && checkValid(tablero, path, lastCell, 'right')) availableDirections.push('right')
 
-  const direction = availableDirections[Math.floor(Math.random() * availableDirections.length)]
+    const direction = availableDirections[Math.floor(Math.random() * availableDirections.length)]
 
-  const nextCell = [...lastCell]
+    const nextCell = [...lastCell]
 
-  switch (direction) {
-    case 'up':
-      nextCell[y] = lastCell[y] - 1
-      break
-    case 'down':
-      nextCell[y] = lastCell[y] + 1
-      break
-    case 'left':
-      nextCell[x] = lastCell[x] - 1
-      break
-    case 'right':
-      nextCell[x] = lastCell[x] + 1
-      break
+    switch (direction) {
+      case 'up':
+        nextCell[y] = lastCell[y] - 1
+        break
+      case 'down':
+        nextCell[y] = lastCell[y] + 1
+        break
+      case 'left':
+        nextCell[x] = lastCell[x] - 1
+        break
+      case 'right':
+        nextCell[x] = lastCell[x] + 1
+        break
 
-    default:
-      break
+      default:
+        break
+    }
+
+    // Añadir celda al path si hay alguna válida
+    if (direction) {
+      path.push(nextCell)
+    } else {
+      path.splice(0, path.length)
+      path.push(initialPos)
+    }
   }
-
-  // Añadir celda al path si hay alguna válida
-  if (direction) path.push(nextCell)
-
   return path
 }
 

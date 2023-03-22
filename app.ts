@@ -2,6 +2,7 @@
 import { connectDB } from './db'
 import express = require('express')
 import cors = require('cors')
+import { gameManager } from './logic/gameManager'
 
 const app = express()
 
@@ -16,3 +17,8 @@ app.use(express.json())
 
 const routerOnload = require('./routers/onload')
 app.use('/api/onload', routerOnload)
+
+const routerOnwin = require('./routers/onwin')
+app.use('/api/onwin', routerOnwin)
+
+void gameManager()
