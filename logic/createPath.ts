@@ -5,7 +5,6 @@ const x = 1
 
 export const createPath = (initialPos: number[], pathLength: number) => {
   const tablero: number[][][] = []
-
   // Crear tablero
   for (let y = 0; y < alto; y++) {
     tablero[y] = []
@@ -15,7 +14,6 @@ export const createPath = (initialPos: number[], pathLength: number) => {
       tablero[y][x] = coordenadasCelda
     }
   }
-
   const path: number[][] = [initialPos]
 
   while (path.length < pathLength) {
