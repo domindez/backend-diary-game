@@ -6,7 +6,7 @@ import { gameManager } from './logic/gameManager'
 
 const app = express()
 
-const PUERTO = (process.env.PORT != null) || 4000
+const PUERTO = process.env.PORT ?? 4000
 
 app.listen(PUERTO, () => { console.log(`Servidor escuchando en puerto ${PUERTO}...`) })
 void connectDB()
