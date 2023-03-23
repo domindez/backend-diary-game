@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 const usersSchema = new Schema({
   userID: String,
   nBottles: Number,
-  livesSaved: Number
+  livesSaved: Number,
+  level: Number
 }, { timestamps: true })
 
 // Crear modelo

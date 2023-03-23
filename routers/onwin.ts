@@ -5,6 +5,7 @@ interface userData {
   userID: string
   livesSaved: number
   nBottles: number
+  level: number
 }
 
 const routerOnwin = express.Router()
@@ -15,8 +16,9 @@ routerOnwin.post('/', async (req, res) => {
 
     const user = await User.findOne({ userID: body.userID })
     if (user?.nBottles === undefined || user.livesSaved === undefined) return
-    user.nBottles = user.nBottles + body.nBottles
-    user.livesSaved = user.livesSaved + body.livesSaved
+    user.nBottles = body.nBottles
+    user.livesSaved = body.livesSaved
+    user.level = body.level
     await user.save()
   } catch (error) {
     console.log(error)
