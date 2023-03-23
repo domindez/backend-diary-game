@@ -18,8 +18,9 @@ routerOnwin.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const user = yield user_1.default.findOne({ userID: body.userID });
         if ((user === null || user === void 0 ? void 0 : user.nBottles) === undefined || user.livesSaved === undefined)
             return;
-        user.nBottles = user.nBottles + body.nBottles;
-        user.livesSaved = user.livesSaved + body.livesSaved;
+        user.nBottles = body.nBottles;
+        user.livesSaved = body.livesSaved;
+        user.level = body.level;
         yield user.save();
     }
     catch (error) {
