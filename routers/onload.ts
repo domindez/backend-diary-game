@@ -26,6 +26,7 @@ routerOnload.post('/', async (req, res) => {
       canMove: true,
       clickedCell: [],
       isWin: false,
+      maxLives: newGame?.lives,
       lives: newGame?.lives,
       userBottles: 0
     }

@@ -20,6 +20,7 @@ export const createNewGame = async () => {
     trail: [initialPos],
     path: path,
     nPlays: 0,
+    maxLives: LIVES,
     lives: LIVES
   }
 
