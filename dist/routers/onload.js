@@ -28,6 +28,7 @@ routerOnload.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function*
             canMove: true,
             clickedCell: [],
             isWin: false,
+            maxLives: newGame === null || newGame === void 0 ? void 0 : newGame.lives,
             lives: newGame === null || newGame === void 0 ? void 0 : newGame.lives,
             userBottles: 0
         };

@@ -30,6 +30,7 @@ const createNewGame = () => __awaiter(void 0, void 0, void 0, function* () {
         trail: [initialPos],
         path: path,
         nPlays: 0,
+        maxLives: LIVES,
         lives: LIVES
     };
     yield games_1.default.create(newGame);
