@@ -7,7 +7,7 @@ class User {
         this.livesSaved = 0;
         this.nBottles = 0;
         this.level = 1;
-        this.skins = ['pirate', 'zombi'];
+        this.skins = [];
         this.usingSkin = 'pirate';
         this.bonus = false;
         this.extras = {};
