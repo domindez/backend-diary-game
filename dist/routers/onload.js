@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const GameClass_1 = require("../logic/Class/GameClass");
-const userClass_1 = require("../logic/Class/userClass");
+const UserClass_1 = require("../logic/Class/UserClass");
 const games_1 = require("../models/games");
 const user_1 = require("../models/user");
 const routerOnload = express.Router();
@@ -28,7 +28,7 @@ routerOnload.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function*
             user = userExsit;
         }
         else {
-            user = new userClass_1.User(userID);
+            user = new UserClass_1.User(userID);
             yield user_1.default.create(user);
         }
         res.send({ game, user });

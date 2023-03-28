@@ -1,6 +1,6 @@
 import express = require('express')
 import { Game } from '../logic/Class/GameClass'
-import { User } from '../logic/Class/userClass'
+import { User } from '../logic/Class/UserClass'
 import Games from '../models/games'
 import Users from '../models/user'
 

@@ -9,12 +9,12 @@ const app = express();
 const PUERTO = (_a = process.env.PORT) !== null && _a !== void 0 ? _a : 4000;
 app.listen(PUERTO, () => { console.log(`Servidor escuchando en puerto ${PUERTO}...`); });
 void (0, db_1.connectDB)();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cors({
     origin: 'https://trivify.es',
     optionsSuccessStatus: 200
 }));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 const routerOnload = require('./routers/onload');
 app.use('/api/onload', routerOnload);
 const routerOnwin = require('./routers/onwin');

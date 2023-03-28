@@ -10,12 +10,13 @@ const PUERTO = process.env.PORT ?? 4000
 
 app.listen(PUERTO, () => { console.log(`Servidor escuchando en puerto ${PUERTO}...`) })
 void connectDB()
+
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 app.use(cors({
   origin: 'https://trivify.es',
   optionsSuccessStatus: 200
 }))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
 
 const routerOnload = require('./routers/onload')
 app.use('/api/onload', routerOnload)
