@@ -10,41 +10,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
+const GameClass_1 = require("../logic/Class/GameClass");
+const userClass_1 = require("../logic/Class/userClass");
 const games_1 = require("../models/games");
 const user_1 = require("../models/user");
 const routerOnload = express.Router();
 routerOnload.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const userID = req.body.userID;
     try {
         const newGame = yield games_1.default.findOne().sort({ gameID: -1 }).limit(1);
-        const gameToSend = {
-            gameReady: true,
-            gameID: newGame === null || newGame === void 0 ? void 0 : newGame.gameID,
-            initialPos: newGame === null || newGame === void 0 ? void 0 : newGame.initialPos,
-            playerPos: newGame === null || newGame === void 0 ? void 0 : newGame.initialPos,
-            bottlePos: newGame === null || newGame === void 0 ? void 0 : newGame.path[newGame.path.length - 1],
-            trail: [newGame === null || newGame === void 0 ? void 0 : newGame.initialPos],
-            path: newGame === null || newGame === void 0 ? void 0 : newGame.path,
-            justDeath: false,
-            canMove: true,
-            clickedCell: [],
-            isWin: false,
-            maxLives: newGame === null || newGame === void 0 ? void 0 : newGame.lives,
-            lives: newGame === null || newGame === void 0 ? void 0 : newGame.lives,
-            userBottles: 0
-        };
-        res.send(gameToSend);
-        if ((newGame === null || newGame === void 0 ? void 0 : newGame.nPlays) === undefined || (newGame === null || newGame === void 0 ? void 0 : newGame.nPlays) === null)
-            return;
+        if ((newGame === null || newGame === void 0 ? void 0 : newGame.nPlays) == null || !(newGame === null || newGame === void 0 ? void 0 : newGame.gameID) || !(newGame === null || newGame === void 0 ? void 0 : newGame.lives))
+            throw new Error('No Game in DB');
+        const game = new GameClass_1.Game(newGame.gameID, newGame.initialPos, newGame.path, newGame.lives);
+        let user;
+        const userExsit = yield user_1.default.findOne({ userID: userID });
+        if (userExsit) {
+            user = userExsit;
+        }
+        else {
+            user = new userClass_1.User(userID);
+            yield user_1.default.create(user);
+        }
+        res.send({ game, user });
         newGame.nPlays = newGame.nPlays + 1;
         yield newGame.save();
-        const body = req.body;
-        const userExist = yield user_1.default.findOne({ userID: body.userID });
-        if (userExist) {
-            userExist.updatedAt = new Date();
-            void userExist.save();
-            return;
-        }
-        yield user_1.default.create(body);
     }
     catch (error) {
         console.log(error);

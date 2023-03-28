@@ -15,10 +15,11 @@ const usersSchema = new Schema({
     livesSaved: Number,
     nBottles: Number,
     level: Number,
+    skins: [String],
     usingSkin: String,
     statistics: StatisticsSchema,
     bonus: Boolean,
     extras: Object
 }, { timestamps: true });
-const User = mongoose.model('diarygameusers', usersSchema);
-exports.default = User;
+const Users = mongoose.model('diarygameusers', usersSchema);
+exports.default = Users;

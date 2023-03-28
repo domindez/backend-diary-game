@@ -1,5 +1,5 @@
 import express = require('express')
-import User from '../models/user'
+import Users from '../models/user'
 
 interface userData {
   userID: string
@@ -14,7 +14,7 @@ routerOnwin.post('/', async (req, res) => {
   try {
     const body: userData = req.body
 
-    const user = await User.findOne({ userID: body.userID })
+    const user = await Users.findOne({ userID: body.userID })
     if (user?.nBottles === undefined || user.livesSaved === undefined) return
     Object.assign(user, body)
     await user.save()

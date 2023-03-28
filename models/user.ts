@@ -15,6 +15,7 @@ const usersSchema = new Schema({
   livesSaved: Number,
   nBottles: Number,
   level: Number,
+  skins: [String],
   usingSkin: String,
   statistics: StatisticsSchema,
   bonus: Boolean,
@@ -22,6 +23,6 @@ const usersSchema = new Schema({
 }, { timestamps: true })
 
 // Crear modelo
-const User = mongoose.model('diarygameusers', usersSchema)
+const Users = mongoose.model('diarygameusers', usersSchema)
 
-export default User
+export default Users
