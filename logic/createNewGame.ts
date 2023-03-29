@@ -5,7 +5,7 @@ export const createNewGame = async () => {
   const lastGame = await Games.findOne().sort({ gameID: -1 }).limit(1)
   const lastGameID = lastGame?.gameID ?? 1
 
-  const LIVES = 20
+  const LIVES = 30
   const PATH_LENGTH = 20
   const aviableInitialPos = [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [1, 0], [1, 6]]
   const randomIndex = Math.floor(Math.random() * aviableInitialPos.length)
