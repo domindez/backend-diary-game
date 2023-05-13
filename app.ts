@@ -13,10 +13,7 @@ void connectDB()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-app.use(cors({
-  origin: 'https://trivify.es',
-  optionsSuccessStatus: 200
-}))
+app.use(cors())
 
 const routerOnload = require('./routers/onload')
 app.use('/api/onload', routerOnload)
